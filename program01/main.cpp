@@ -13,7 +13,7 @@ void display(cv::Mat image, std::string windowName = "Image") {
 
 int main(int argc, char* argv[]){
   
-  cv::Mat src = cv::imread(argv[1]);
+  cv::Mat src = cv::imread(argv[1], 0);
 
   display(src, "src");
 
@@ -25,9 +25,8 @@ int main(int argc, char* argv[]){
   int i, j;
   for( j=0 ; j<y_size ; j++){
     for( i=0 ; i<x_size ; i++){
-      cv::Vec3b pixel = src.at<cv::Vec3b>(j,i);
-      int value = (0.299 * pixel[2] + 0.587 * pixel[1] + 0.114 * pixel[0]);
-      dst.at<uchar>(j,i) = value;
+      uchar pixel = src.at<uchar>(j,i);
+      dst.at<uchar>(j,i) = pixel;
     }
   }
 
